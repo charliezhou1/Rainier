@@ -37,12 +37,18 @@ module.exports = {
     ],
   },
   devServer: {
+    host: "localhost",
+    port: 8080,
+    // enable HMR on the devServer
+    hot: true,
+    // fallback to root for other urls
+    historyApiFallback: true,
     static: {
       directory: path.resolve(__dirname),
     },
     proxy: [
       {
-        //context: ["/api"],
+        context: ["/api"],
         target: "http://localhost:3000",
       },
     ],

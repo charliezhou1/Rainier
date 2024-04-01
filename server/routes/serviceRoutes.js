@@ -1,30 +1,32 @@
 const express = require("express");
 const router = express.Router();
-const Service = require("../models/models");
+const serviceController = require("../controllers/serviceController");
 
-// router.get("/", async (req, res) => {
-//   try {
-//     const service = await Service.find();
-//     res.json(service);
-//   } catch (err) {
-//     console.error("error in serviceRouter fetching", err);
-//     res.status(500).json({ error: "error in serviceRoutes fetching" });
-//   }
-// });
-
-// router.post("/", async (req, res) => {
-//   try {
-//     const service = await Service.create(req.body);
-//     res.status(200).json(service);
-//   } catch (err) {
-//     console.error("error in serviceRouter creating", err);
-//     res.status(500).json({ error: "error in serviceRoutes creating" });
-//   }
-// });
-
-router.get("/", (req, res) => {
+router.get("/", serviceController.getService, (req, res) => {
   console.log("in the serviceRoutes");
-  res.status(200).json();
+  res.status(200).json(res.locals.services);
 });
+
+router.post("/service", serviceController.createService, async (req, res) => {
+  res.status(200).json({});
+});
+
+router.patch(
+  "/service/:id",
+  serviceController.updateService,
+  async (req, res) => {
+    res.status(200).json(res.locals.serviceUpdate);
+  }
+);
+
+
+router.delete(
+  "/service/:id",
+  serviceController.deleteService,
+  (req, res) => {
+    console.log(`in the delete`);
+    res.status(200).json({ message: `service deleted successfully` });
+  }
+);
 
 module.exports = router;

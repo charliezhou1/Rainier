@@ -1,20 +1,16 @@
 import React, { useState } from "react";
-
-const Signup = () => {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-
-  const handleSignup = (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
-    console.log('Sign up')
-
-    //console.log(`Sign up ${email}`);
+    console.log('Login')
+    //authentication logic
   };
   return (
     <div>
-      <h1>Sign Up Here</h1>
-      <form onSubmit={handleSignup}>
+      <h1>Login</h1>
+      <form onSubmit={handleLogin}>
         <input
           type="email"
           placeholder="Enter your username"
@@ -29,17 +25,11 @@ const Signup = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
         ></input>
-        <input
-          type="password"
-          placeholder="Reenter your password"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-          required
-        ></input>
-        <button type="submit">Signup</button>
+
+        <button type="submit">Login</button>
       </form>
     </div>
   );
 };
 
-export default Signup;
+export default Login;

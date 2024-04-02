@@ -7,13 +7,13 @@ const Signup = () => {
 
   const handleSignup = (e) => {
     e.preventDefault();
-    console.log('Sign up')
+    console.log("Sign up");
 
     //console.log(`Sign up ${email}`);
   };
   return (
     <div>
-      <h1>Sign Up Here</h1>
+      <h2>Sign Up Here</h2>
       <form onSubmit={handleSignup}>
         <input
           type="email"

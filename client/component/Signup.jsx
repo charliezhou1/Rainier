@@ -1,13 +1,23 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const handleSignup = (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
     console.log("Sign up");
+    try {
+      const response = await axios.post("/createuser", {
+        username: email,
+        password: password,
+      });
+      console.log(response.data);
+    } catch (err) {
+      console.error("Create user error");
+    }
 
     //console.log(`Sign up ${email}`);
   };

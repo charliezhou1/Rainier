@@ -12,6 +12,11 @@ app.use((req, res) =>
   res.status(404).send("This is not the page you're looking for...")
 );
 
+//could not read ejs
+
+app.set("view engine", "ejs");
+app.set("views", "./views");
+
 // const MONGO_URI =
 //   "mongodb+srv://charlizezhou:NQlyJzbdrd6Te2UP@cluster0.v5hjzcu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 

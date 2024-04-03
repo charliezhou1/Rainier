@@ -18,9 +18,9 @@ router.get("/order", orderController.getAllOrder, (req, res) => {
 });
 
 //not working could not find file.
-// router.get("/system", (req, res) => {
-//   res.render("index.ejs");
-// });
+router.get("/system", (req, res) => {
+  res.render("index.ejs");
+});
 
 router.post("/createorder", orderController.createOrder, (req, res) => {
   console.log("create order");

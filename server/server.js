@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const serviceRoutes = require("./routes/serviceRoutes");
-
+const path=require('path');
 const app = express();
 
 app.use(bodyParser.json());
@@ -15,7 +15,9 @@ app.use((req, res) =>
 //could not read ejs
 
 app.set("view engine", "ejs");
-app.set("views", "./views");
+
+app.set("views", path.resolve(__dirname, "views"));
+//app.set("views", "./views");
 
 // const MONGO_URI =
 //   "mongodb+srv://charlizezhou:NQlyJzbdrd6Te2UP@cluster0.v5hjzcu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";

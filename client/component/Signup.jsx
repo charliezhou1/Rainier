@@ -8,7 +8,7 @@ const Signup = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleSignup = async (e) => {
-    e.preventDefault();
+    e.preventDefault();np
     if (password !== confirmPassword) {
       setErrorMessage("Passwords do not match");
       return;

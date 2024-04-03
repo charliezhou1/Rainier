@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Signup from "./Signup.jsx";
 import Login from "./Login.jsx";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 function Navbar() {
+
+
   return (
     <Router>
       <div>
@@ -24,7 +26,6 @@ function Navbar() {
             <li className="nav-item">
               <Link to="/signup">Signup</Link>
             </li>
-
           </ul>
         </nav>
         <Routes>

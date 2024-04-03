@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const serviceRoutes = require("./routes/serviceRoutes");
-const path=require('path');
+const path = require("path");
 const app = express();
 
 app.use(bodyParser.json());
@@ -12,7 +12,7 @@ app.use((req, res) =>
   res.status(404).send("This is not the page you're looking for...")
 );
 
-//could not read ejs
+//read ejs
 
 app.set("view engine", "ejs");
 

@@ -8,7 +8,7 @@ const Signup = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleSignup = async (e) => {
-    e.preventDefault();np
+    e.preventDefault();
     if (password !== confirmPassword) {
       setErrorMessage("Passwords do not match");
       return;
@@ -28,7 +28,6 @@ const Signup = () => {
   };
   return (
     <div>
-      <h2>Sign Up Here</h2>
       <form onSubmit={handleSignup}>
         <input
           type="email"

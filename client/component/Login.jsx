@@ -3,6 +3,8 @@ import axios from "axios";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [login, SetIsLoggedIn] = useState(false);
+  const [error, setErrorMessage] = useState("");
   const handleLogin = async (e) => {
     console.log("start to handlelogin");
     e.preventDefault();
@@ -14,13 +16,15 @@ const Login = () => {
       });
       console.log(response.data);
       console.log("sign in success");
+      SetIsLoggedIn(true);
     } catch (err) {
       console.error("Login user error", err);
+      setErrorMessage(`Login error. Please try again`);
+      return;
     }
   };
   return (
     <div>
-      <h2>Login</h2>
       <form onSubmit={handleLogin}>
         <input
           type="email"
@@ -39,6 +43,7 @@ const Login = () => {
 
         <button type="submit">Login</button>
       </form>
+      {login ? <p>Hi {email}, you logged in</p> : <p> {error}</p>}
     </div>
   );
 };

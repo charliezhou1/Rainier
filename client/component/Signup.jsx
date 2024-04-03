@@ -5,12 +5,17 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSignup = async (e) => {
     e.preventDefault();
+    if (password !== confirmPassword) {
+      setErrorMessage("Passwords do not match");
+      return;
+    }
     console.log("Sign up");
     try {
-      const response = await axios.post("/createuser", {
+      const response = await axios.post("/api/createaccount", {
         username: email,
         password: password,
       });
@@ -46,6 +51,7 @@ const Signup = () => {
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
         ></input>
+        {errorMessage && <p>{errorMessage}</p>}
         <button type="submit">Signup</button>
       </form>
     </div>

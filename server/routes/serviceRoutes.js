@@ -17,6 +17,11 @@ router.get("/order", orderController.getAllOrder, (req, res) => {
   // res.status(200).json({});
 });
 
+//not working could not find file.
+// router.get("/system", (req, res) => {
+//   res.render("index.ejs");
+// });
+
 router.post("/createorder", orderController.createOrder, (req, res) => {
   console.log("create order");
   res.status(200).json({});
@@ -31,6 +36,11 @@ router.get("/user", userController.getUser, (req, res) => {
   console.log("getuser below");
   console.log(res.locals.users);
   res.status(200).json(res.locals.users);
+});
+
+router.post("/loginaccount", userController.verifyUser, (req, res) => {
+  console.log("login in successfully");
+  res.status(200).json({});
 });
 
 router.post("/service", serviceController.createService, async (req, res) => {

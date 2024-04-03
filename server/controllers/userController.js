@@ -34,4 +34,27 @@ userController.getUser = async (req, res, next) => {
   }
 };
 
+userController.verifyUser = async (req, res, next) => {
+  try {
+    console.log("before verify");
+    const { username, password } = req.body;
+    const user = await User.findOne({ username });
+    console.log(`${username} ${user.username} ${password} ${user.password}`);
+    req.user = user;
+    if (!user) {
+      return res.status(400).json({ error: "User not found" });
+    }
+    if (password !== user.password) {
+      return res.status(400).json({ error: "Incorrect password" });
+    }
+    return next();
+  } catch (err) {
+    next({
+      log: `Middleware verifyUser error ${err}`,
+      status: 500,
+      message: { err: `An error in middleware occured` },
+    });
+  }
+};
+
 module.exports = userController;

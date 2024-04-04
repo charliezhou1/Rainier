@@ -1,0 +1,19 @@
+# Exclude sensitive files
+passwords.txt
+.env
+
+# Exclude sensitive directories
+config/
+
+# Exclude IDE and editor specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Exclude dependency directories
+node_modules
+vendor/
+
+
+npm-debug.log

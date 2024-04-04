@@ -4,16 +4,17 @@ import axios from "axios";
 // import { useSelector, useDispatch } from "react-redux";
 // import { fetchServiceSuccess } from "../actions/serviceActions";
 
-const ServiceList = (props) => {
+const ServiceList = ({ user }) => {
   const [services, setServices] = useState([]);
-  //   const services = useSelector((state) => state.services);
-  //   const dispatch = useDispatch();
+  const [order, setOrder] = useState(false);
+  const [error, setErrorMessage] = useState("");
 
   useEffect(() => {
     const fetchServices = async () => {
       try {
         const response = await axios.get("/api");
         setServices(response.data);
+
         //dispatch(fetchServiceSuccess(response.data));
       } catch (err) {
         console.error(`Fetching services error ${err}`);
@@ -22,8 +23,23 @@ const ServiceList = (props) => {
     fetchServices();
   }, []);
 
-  const handleOrderNow = (service) => {
-    console.log("will create this feature later", service);
+  const handleOrderNow = async (service) => {
+    console.log("order", service);
+    try {
+      const response = await axios.post("/api/createorder", {
+        customerName: user,
+        title: service.title,
+        duration: service.duration,
+        helper: service.helper,
+        category: service.category,
+      });
+      console.log(response.data);
+      console.log(`username is ${user}`);
+      setOrder(true);
+    } catch (err) {
+      setErrorMessage(`Error in your order. Please try again.`);
+      console.error(`handle order ${err}`);
+    }
   };
 
   return (
@@ -32,7 +48,7 @@ const ServiceList = (props) => {
       <ul className="serviceComponent">
         {services.map((service) => (
           <li key={service._id}>
-            <img src={service.picture} alt="Service" className="picture"/>
+            <img src={service.picture} alt="Service" className="picture" />
             <p>{service.title}</p>
             <p>{service.duration} hour</p>
             <p>{service.helper} helper</p>
@@ -42,6 +58,11 @@ const ServiceList = (props) => {
           </li>
         ))}
       </ul>
+      {order ? (
+        <p>Hi {user}, you successfully placed order</p>
+      ) : (
+        <p> {error}</p>
+      )}
     </div>
   );
 };

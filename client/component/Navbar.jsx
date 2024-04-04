@@ -3,9 +3,10 @@ import Signup from "./Signup.jsx";
 import Login from "./Login.jsx";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
-function Navbar() {
-
-
+function Navbar({ onLogin }) {
+  const handleLogin = (user) => {
+    onLogin(user);
+  };
   return (
     <Router>
       <div>
@@ -29,7 +30,11 @@ function Navbar() {
           </ul>
         </nav>
         <Routes>
-          <Route exact="true" path="/" element={<Login />}></Route>
+          <Route
+            exact="true"
+            path="/"
+            element={<Login onLogin={onLogin} />}
+          ></Route>
           <Route exact="true" path="/signup" element={<Signup />}></Route>
         </Routes>
       </div>

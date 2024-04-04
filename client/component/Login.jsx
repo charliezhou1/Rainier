@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-const Login = () => {
-  const [email, setEmail] = useState("");
+const Login = ({ onLogin }) => {
+  const [inputEmail, setInputEmail] = useState("");
   const [password, setPassword] = useState("");
   const [login, SetIsLoggedIn] = useState(false);
   const [error, setErrorMessage] = useState("");
@@ -11,9 +11,10 @@ const Login = () => {
     try {
       console.log("start to axios");
       const response = await axios.post("/api/loginaccount", {
-        username: email,
+        username: inputEmail,
         password: password,
       });
+      onLogin(inputEmail);
       console.log(response.data);
       console.log("sign in success");
       SetIsLoggedIn(true);
@@ -29,10 +30,13 @@ const Login = () => {
         <input
           type="email"
           placeholder="Enter your username"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={inputEmail}
+          onChange={(e) => {
+            setInputEmail(e.target.value);
+          }}
           required
         ></input>
+        {/* setEmail(e.target.value) */}
         <input
           type="password"
           placeholder="Enter your password"
@@ -40,10 +44,9 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
         ></input>
-
         <button type="submit">Login</button>
       </form>
-      {login ? <p>Hi {email}, you logged in</p> : <p> {error}</p>}
+      {login ? <p>Hi {inputEmail}, you logged in</p> : <p> {error}</p>}
     </div>
   );
 };

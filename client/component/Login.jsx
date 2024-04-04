@@ -14,6 +14,7 @@ const Login = ({ onLogin }) => {
         username: inputEmail,
         password: password,
       });
+      //pass client username
       onLogin(inputEmail);
       console.log(response.data);
       console.log("sign in success");

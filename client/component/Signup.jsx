@@ -6,7 +6,7 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-
+  const [message, setMessage] = useState("");
   const handleSignup = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
@@ -19,6 +19,7 @@ const Signup = () => {
         username: email,
         password: password,
       });
+      setMessage(`Hi ${email}, welcome!`);
       console.log(response.data);
     } catch (err) {
       console.error("Create user error");
@@ -51,6 +52,7 @@ const Signup = () => {
           required
         ></input>
         {errorMessage && <p>{errorMessage}</p>}
+        {<p>{message}</p>}
         <button type="submit">Signup</button>
       </form>
     </div>

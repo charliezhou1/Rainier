@@ -8,6 +8,11 @@ const ServiceList = ({ user }) => {
   const [services, setServices] = useState([]);
   const [order, setOrder] = useState(false);
   const [error, setErrorMessage] = useState("");
+  //if not log in, could not see order button
+  const [isLoggedIn, SetIsLoggedIn] = useState(false);
+  useEffect(() => {
+    SetIsLoggedIn(!!user);
+  }, [user]);
 
   useEffect(() => {
     const fetchServices = async () => {
@@ -55,7 +60,9 @@ const ServiceList = ({ user }) => {
             <p>{service.helper} helper</p>
             <p>{service.category}</p>
             <p>${service.price}</p>
-            <button onClick={() => handleOrderNow(service)}>Order Now</button>
+            {isLoggedIn && (
+              <button onClick={() => handleOrderNow(service)}>Order Now</button>
+            )}
           </li>
         ))}
       </ul>

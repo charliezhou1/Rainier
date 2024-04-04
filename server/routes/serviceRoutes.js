@@ -17,10 +17,9 @@ router.get("/order", orderController.getAllOrder, (req, res) => {
   // res.status(200).json({});
 });
 
-//not working could not find file.
-router.get("/system", (req, res) => {
-  res.render("index.ejs");
-});
+// router.get("/summary", (req, res) => {
+//   res.render("index.ejs");
+// });
 
 router.post("/createorder", orderController.createOrder, (req, res) => {
   console.log("create order");
@@ -63,6 +62,11 @@ router.delete("/service/:id", serviceController.deleteService, (req, res) => {
 router.post("/createuser", userController.createUser, (req, res) => {
   console.log("in the signup");
   res.status(200).json({ message: `user created successfully` });
+});
+
+router.get("/summary", orderController.getSummary, (req, res) => {
+  console.log("get summary");
+  res.render("index.ejs", { summary: res.locals.summary });
 });
 
 module.exports = router;

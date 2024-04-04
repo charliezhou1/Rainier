@@ -49,4 +49,44 @@ orderController.getAllOrder = async (req, res, next) => {
   }
 };
 
+orderController.getSummary = async (req, res, next) => {
+  try {
+    const orders = await Order.find({}).exec();
+    const totalOrder = orders.length;
+    let totalDuration = 0;
+    let totalHelper = 0;
+    for (const order of orders) {
+      totalDuration += order.duration;
+      totalHelper += order.helper;
+    }
+
+    const detailedOrder = orders.map((order) => ({
+      customerName: order.customerName,
+      title: order.title,
+      duration: order.duration,
+      helper: order.helper,
+      category: order.category,
+      price: order.price,
+      //createdAt: order.createdAt,
+    }));
+    // console.log("get summary start");
+    // console.log(totalDuration, totalOrder);
+    // console.log(detailedOrder);
+    res.locals.summary = {
+      totalOrder,
+      totalDuration,
+      totalHelper,
+      detailedOrder,
+    };
+    console.log(res.locals.summary);
+    return next();
+  } catch (err) {
+    next({
+      log: `Middleware getSummary error ${err}`,
+      status: 500,
+      message: { err: `An error in middleware occured` },
+    });
+  }
+};
+
 module.exports = orderController;

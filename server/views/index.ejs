@@ -8,23 +8,38 @@
   <body>
     <h1>Cleaning Service Order Management System</h1>
     <!-- Needs to be finish -->
-    <button>Create Service</button>
-    <button>Update Service</button>
-    <button>Delete Service</button>
-
     <div>
       <h2>Summary</h2>
-      <p>Total order</p>
-      <p>Total helper</p>
+      <p>Total order: <%= summary.totalOrder%></p>
+      <p>Total helper: <%=summary.totalHelper%></p>
+      <p>Total duration: <%=summary.totalDuration%></p>
     </div>
     <div>
       <h3>Order details</h3>
-      <p>Customer name</p>
-      <p>Item</p>
-      <p>Duration</p>
-      <p>Helper</p>
-      <p>Category</p>
-      <p>Price</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Customer Name</th>
+            <th>Item</th>
+            <th>Duration</th>
+            <th>Helper</th>
+            <th>Category</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% summary.detailedOrder.forEach(order => { %>
+          <tr>
+            <td><%= order.customerName %></td>
+            <td><%= order.title %></td>
+            <td><%= order.duration %></td>
+            <td><%= order.helper%></td>
+            <td><%= order.category %></td>
+            <td><%= order.price %></td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
     </div>
   </body>
 </html>

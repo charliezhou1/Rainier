@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rainer CRM</title>
+  </head>
+  <body>
+    <h1>Cleaning Service CRM</h1>
+    <div>
+      <h2>Summary</h2>
+      <p>Total customer: <%= user.totalUser%></p>
+      <table>
+        <thread>
+          <tr>
+            <th>username</th>
+            <th>password</th>
+          </tr>
+        </thread>
+        <tbody>
+          <% user.userDetails.forEach(user => { %>
+          <tr>
+            <td><%= user.username %></td>
+            <td><%= user.password %></td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

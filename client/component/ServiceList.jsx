@@ -32,6 +32,7 @@ const ServiceList = ({ user }) => {
         duration: service.duration,
         helper: service.helper,
         category: service.category,
+        price: service.price,
       });
       console.log(response.data);
       console.log(`username is ${user}`);

@@ -31,11 +31,11 @@ router.post("/createaccount", userController.createUser, (req, res) => {
   res.status(200).json({});
 });
 
-router.get("/user", userController.getUser, (req, res) => {
-  console.log("getuser below");
-  console.log(res.locals.users);
-  res.status(200).json(res.locals.users);
-});
+// router.get("/user", userController.getUser, (req, res) => {
+//   console.log("getuser below");
+//   console.log(res.locals.users);
+//   res.status(200).json(res.locals.users);
+// });
 
 router.post("/loginaccount", userController.verifyUser, (req, res) => {
   console.log("login in successfully");
@@ -67,6 +67,13 @@ router.post("/createuser", userController.createUser, (req, res) => {
 router.get("/summary", orderController.getSummary, (req, res) => {
   console.log("get summary");
   res.render("index.ejs", { summary: res.locals.summary });
+});
+
+router.get("/user", userController.getUser, (req, res) => {
+  console.log("getuser below");
+  res.render("crm.ejs", {user: res.locals.user})
+  // console.log(res.locals.users);
+  // res.status(200).json(res.locals.users);
 });
 
 module.exports = router;

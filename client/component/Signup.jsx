@@ -19,7 +19,9 @@ const Signup = () => {
         username: email,
         password: password,
       });
-      setMessage(`Hi ${email}, welcome!`);
+      setMessage(
+        `Hi ${email}, welcome! You created account successfully. Please log in now.`
+      );
       console.log(response.data);
     } catch (err) {
       console.error("Create user error");

@@ -16,6 +16,7 @@
 
 .serviceComponent {
   display: flex;
+  flex-wrap: wrap;
   padding: 10px;
   list-style-type: none;
 }
@@ -32,5 +33,9 @@
 }
 
 .order-table {
-  border-color:black
+  border-color: black;
+}
+
+input {
+  margin: 4px;
 }

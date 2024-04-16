@@ -53,13 +53,15 @@ const ServiceList = ({ user }) => {
       <h1>Services we provide</h1>
       <ul className="serviceComponent">
         {services.map((service) => (
-          <li key={service._id}>
+          <li key={service._id} className="serviceItem">
             <img src={service.picture} alt="Service" className="picture" />
-            <p>{service.title}</p>
-            <p>{service.duration} hour</p>
-            <p>{service.helper} helper</p>
-            <p>{service.category}</p>
-            <p>${service.price}</p>
+            <div className="serviceInfo">
+              <p>{service.title}</p>
+              <p>{service.duration} hour</p>
+              <p>{service.helper} helper</p>
+              <p>{service.category}</p>
+              <p>${service.price}</p>
+            </div>
             {isLoggedIn && (
               <button onClick={() => handleOrderNow(service)}>Order Now</button>
             )}

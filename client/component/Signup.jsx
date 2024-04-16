@@ -53,9 +53,10 @@ const Signup = () => {
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
         ></input>
+
+        <button type="submit">Signup</button>
         {errorMessage && <p>{errorMessage}</p>}
         {<p>{message}</p>}
-        <button type="submit">Signup</button>
       </form>
     </div>
   );
